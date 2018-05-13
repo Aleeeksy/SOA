@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+<title>Wybór samochodu</title>
+</h:head> 
+<h:body> 
+	<h:form id="form">
+	
+		<h:selectOneMenu value="#{carDealer.brand}">
+			<f:selectItem itemValue="#{null}" itemLabel="-- select --" />
+	        <f:selectItems value="#{carDealer.brands}"/>
+			<f:ajax listener="#{carDealer.changeListOfModel}" render="menu2" />
+			<f:ajax listener="#{carDealer.makeDisable}" render="buttonSubmit"/>
+	     </h:selectOneMenu>
+	     
+	     <br/>
+
+	     <h:selectOneMenu id="menu2" value="#{carDealer.model}">
+			<f:selectItem itemValue="#{null}" itemLabel="-- select --" />
+	        <f:selectItems value="#{carDealer.models}"/>
+	        <f:ajax listener="#{carDealer.makeDisable}" render="buttonSubmit"/>
+		</h:selectOneMenu>
+		
+		<br/>
+		
+		<h:selectOneMenu value = "#{carDealer.fuel}"> 
+			<f:selectItem itemValue="#{null}" itemLabel="-- select --" />
+		   <f:selectItem itemValue = "benzyna" itemLabel = "benzyna" /> 
+		   <f:selectItem itemValue = "diesel" itemLabel = "diesel" /> 
+		   <f:ajax listener="#{carDealer.makeDisable}" render="buttonSubmit"/>
+		</h:selectOneMenu> 	
+		
+		<h:inputText value="#{carDealer.price}" id="price" placeholder="Price NN-NN">
+			<f:ajax listener="#{carDealer.makeDisable}" render="buttonSubmit"/>
+		</h:inputText>
+		
+	    <br/>
+	    
+	    <h:inputText value="#{carDealer.name}" id="name" placeholder="Name">
+	    	<f:ajax listener="#{carDealer.makeDisable}" render="buttonSubmit"/>
+	    </h:inputText>
+	    
+	    <h:inputText value="#{carDealer.phone}" id="phone" placeholder="Phone">
+	    	<f:ajax listener="#{carDealer.makeDisable}" render="buttonSubmit"/>
+	    </h:inputText>
+	    
+	    <br/>
+	    
+	    <h:commandButton id="buttonSubmit" value="Submit" disabled="#{carDealer.disable}">
+	    	<f:ajax listener="#{carDealer.showCars}" render="availableCars"/>
+	    </h:commandButton>
+	    
+	    <h:commandButton type="reset" value="Reset">
+		  <f:ajax listener="#{carDealer.resetCars}" render="form availableCars"/>
+		</h:commandButton>
+		
+		<br/>
+	</h:form>
+	
+	 <h:form id="availableCars" >
+         <h:dataTable value = "#{carDealer.availableCars}" var = "car">
+            
+            <h:column>    				
+               <f:facet name = "header">Brand</f:facet>    				
+               #{car.brand}
+            </h:column>
+            
+            <h:column>
+               <f:facet name = "header">Model</f:facet>
+               #{car.model}
+            </h:column>
+            
+            <h:column>
+               <f:facet name = "header">Price</f:facet>
+               #{car.price}
+            </h:column>
+         </h:dataTable>
+      </h:form>
+	
+</h:body>
+</html>

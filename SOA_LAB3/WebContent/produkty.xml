@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_parts>
+	<part>
+		<id>0</id>
+		<name>Procesor</name>
+		<price>950</price>
+	</part>
+	<part>
+		<id>1</id>
+		<name>Mysz</name>
+		<price>150</price>
+	</part>
+	<part>
+		<id>2</id>
+		<name>Monitor LED</name>
+		<price>650</price>
+	</part>
+	<part>
+		<id>3</id>
+		<name>Monitor LCD</name>
+		<price>450</price>
+	</part>
+</computer_parts>

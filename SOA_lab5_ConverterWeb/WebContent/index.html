@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Converter Celsius-Fahrenheit</title>
+</head>
+<body>
+	<h1>Converter <br/>Celsius-Fahrenheit</h1>
+	<form action="./ConverterServlet" method="post">
+		<select name="conversion">
+			<option value="Cel2Fahr">Celsius -> Fahrenheit</option>
+			<option value="Fahr2Cel">Fahrenheit -> Celsius</option>
+		</select>
+		<input name="temperature" type="number" step="any" required="required"/>
+		<input type="submit"/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/jackson-core-2.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/jackson-databind-2.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/jackson-dataformat-xml-2.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/jackson-module-jaxb-annotations-2.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/stax2-api-3.1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/woodstox-core-5.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aleks/.m2/common-lang3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 11.0 Runtime">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.utility"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_73">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

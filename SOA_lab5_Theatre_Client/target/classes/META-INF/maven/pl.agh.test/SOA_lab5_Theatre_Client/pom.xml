@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pl.agh.test</groupId>
+  <artifactId>SOA_lab5_Theatre_Client</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>SOA_lab5_Theatre_Client</name>
+  
+	<url>http://maven.apache.org</url>
+
+	<properties>
+            <http>false</http>
+	</properties>
+   <dependencies>
+
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-ejb-client-bom</artifactId>
+            <version>10.1.0.Final</version>
+            <type>pom</type>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>pl.agh.test</groupId>
+            <artifactId>SOA_lab5_Theatre</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            
+            <type>ejb-client</type>
+        </dependency>
+
+	    </dependencies>
+
+    <build>
+        <plugins>
+
+
+            <!-- Add the maven exec plug-in to allow us to run a java program
+                via maven -->
+            <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <configuration>
+                <executable>java</executable>
+                <workingDirectory>${project.build.directory}/exec-working-directory</workingDirectory>
+                <arguments>
+                    <argument>-Dhttp=${http}</argument>
+                    <argument>-classpath</argument>
+                    <classpath></classpath>
+                    <argument>pl.agh.test.client.RemoteEJBClient</argument>
+                </arguments>
+                <!--<detail>true</detail>-->
+            </configuration>
+            <!--<executions>
+                <execution>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                </execution>
+            </executions>-->
+        </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>pl.agh.test.RemoteEJBClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+  
+</project>

@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/html">
+      
+<h:head>
+<title>Ankieta</title>
+</h:head> 
+<h:body> 
+<f:view>
+	<h:form>
+		Imie:<h:inputText id="imie" label ="imie"  validatorMessage="Required imie" value="#{zadanie4.name}" required="true"></h:inputText>
+		<h:message for="imie" /><br/>
+		Mail:
+		<h:inputText id="email" value="#{zadanie4.email}"  validatorMessage="Invalid email format" required="true" label="email">
+		    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+		</h:inputText>
+		<h:message for="email" /><br/>
+		
+		Wiek(10-100):
+		<h:inputText id="wiek" validatorMessage="Invalid wiek" label="wiek" value="#{zadanie4.age}">
+			<f:validateLongRange maximum="100" minimum="10" />
+		</h:inputText>
+		<h:message for="wiek" /><br/>
+		
+		Płeć:
+		<h:selectOneMenu value = "#{zadanie4.sex}"> 
+			<f:selectItem itemValue="#{null}" itemLabel="-- select --" />
+		   <f:selectItem itemValue = "kobieta" itemLabel = "kobieta" /> 
+		   <f:selectItem itemValue = "mezczyzna" itemLabel = "mezczyzna" /> 
+		  <f:ajax render="@form" />
+		</h:selectOneMenu>	<br/>
+		Wyksztalcenie:<h:inputText value="#{zadanie4.education}"></h:inputText><br/>
+		Wzrost:
+		<h:panelGroup rendered="#{zadanie4.sex == null}">
+	        <h:inputText> </h:inputText>
+	    </h:panelGroup>
+		<h:panelGroup rendered="#{zadanie4.sex == 'kobieta'}">
+	        <h:inputText id="wzrostM" validatorMessage="150-185 for women" label = "wzrostM" value="#{zadanie4.height}">
+	        	<f:validateLongRange maximum="185" minimum="150" />
+	        </h:inputText>
+	    </h:panelGroup>
+	    <h:panelGroup rendered="#{zadanie4.sex == 'mezczyzna'}">
+	        <h:inputText id="wzrostK" validatorMessage="165-200 for men" label = "wzrostK" value="#{zadanie4.height}">
+	        	<f:validateLongRange maximum="200" minimum="185" />
+	        </h:inputText>
+	    </h:panelGroup>
+		<h:message for="wzrostK" />
+		<h:message for="wzrostM" /><br/>
+		
+		
+		<h:panelGroup rendered="#{zadanie4.sex == 'kobieta'}">
+	        Obwod biustu:<h:inputText value="#{zadanie4.bust}"></h:inputText><br/>
+	        Wielkość miseczki:<h:inputText value="#{zadanie4.cup}"></h:inputText><br/>
+	        Talia:<h:inputText value="#{zadanie4.weist}"></h:inputText><br/>
+	        Biodra:<h:inputText value="#{zadanie4.hips}"></h:inputText><br/>
+	        Dlugosc nogi:<h:inputText value="#{zadanie4.legs}"></h:inputText><br/>
+	    </h:panelGroup>
+	    
+	    <h:panelGroup rendered="#{zadanie4.sex == 'mezczyzna'}">
+	        Klatka:<h:inputText value="#{zadanie4.chest}"></h:inputText><br/>
+	        Pas:<h:inputText value="#{zadanie4.weist}"></h:inputText><br/>
+	        Dlugosc nogi:<h:inputText value="#{zadanie4.legs}"></h:inputText><br/>
+	    </h:panelGroup>
+		
+		<h:panelGroup rendered="#{zadanie4.partTwo == true}">
+	    	<h:selectOneMenu id="pytanie1" value="#{zadanie4.pytanie1}">
+	            Ile jesteś w stanie przeznaczyć miesięcznie na zakup ubrania?
+	            <f:selectItem itemValue="do 100 zł" itemLabel="do 100 zł" />
+	            <f:selectItem itemValue="100-500 zł" itemLabel="100-500 zł" />
+	            <f:selectItem itemValue="500-1000 zł" itemLabel="500-1000 zł" />
+	            <f:selectItem itemValue="powyżej 1000 zł" itemLabel="powyżej 1000 zł" />
+			</h:selectOneMenu>
+			
+			<br/>
+			
+			<h:selectOneMenu id="pytanie3" value="#{zadanie4.pytanie2}">
+	            Jak często dokonujesz zakupu ubrania?
+	            <f:selectItem itemValue="Codziennie" itemLabel="Codziennie" />
+	            <f:selectItem itemValue="Raz w tygodniu" itemLabel="Raz w tygodniu" />
+	            <f:selectItem itemValue="Raz w miesiącu" itemLabel="Raz w miesiącu" />
+	            <f:selectItem itemValue="Kilka razy w roku" itemLabel="Kilka razy w roku" />
+			</h:selectOneMenu>
+			
+			<br/>
+			
+			<h:selectManyCheckbox id="pytanie4" value="#{zadanie4.pytanie3}">
+	            W jakich kolorach preferujesz ubrania?
+	            <f:selectItem itemValue="Kolorowo-jaskrawych" itemLabel="Kolorowo-jaskrawych" />
+	            <f:selectItem itemValue="Stonowanych w szarościach" itemLabel="Stonowanych w szarościach" />
+	            <f:selectItem itemValue="W czerni i bieli" itemLabel="W czerni i bieli" />
+	            <f:selectItem itemValue="W samej czerni" itemLabel="W samej czerni" />
+			</h:selectManyCheckbox>
+			
+			<h:panelGrid rendered="#{zadanie4.sex == 'kobieta'}">
+	            <h:selectManyCheckbox id="pytanie5w" value="#{zadanie4.pytanie4}">
+	                Jakiego rodzaju ubrania najchętniej kupujesz?
+	                <f:selectItem itemValue="garsonki" itemLabel="garsonki" />
+	                <f:selectItem itemValue="bluzki" itemLabel="bluzki" />
+	                <f:selectItem itemValue="spódniczki" itemLabel="spódniczki" />
+	                <f:selectItem itemValue="spodnie" itemLabel="spodnie" />
+	            </h:selectManyCheckbox>
+	
+	            <h:selectOneMenu id="pytanie6w" value="#{zadanie4.pytanie5}">
+	                Kiedy ostatnio robiłaś u nas zakupy?
+	                <f:selectItem itemValue="Wczoraj" itemLabel="Wczoraj" />
+	                <f:selectItem itemValue="W zeszłym tygodniu" itemLabel="W zeszłym tygodniu" />
+	                <f:selectItem itemValue="W zeszłym miesiącu" itemLabel="W zeszłym miesiącu" />
+	                <f:selectItem itemValue="Kilka miesięcy temu" itemLabel="Kilka miesięcy temu" />
+	                <f:selectItem itemValue="Nie pamiętam" itemLabel="Nie pamiętam" />
+	            </h:selectOneMenu>
+	
+	            <br/>
+	
+	            <h:selectOneMenu id="pytanie7w" value="#{zadanie4.pytanie6}">
+	                Czy jesteś zadowolona z zakupu?
+	                <f:selectItem itemValue="Tak" itemLabel="Tak" />
+	                <f:selectItem itemValue="Raczej tak" itemLabel="Raczej tak" />
+	                <f:selectItem itemValue="Raczej nie" itemLabel="Raczej nie" />
+	                <f:selectItem itemValue="Nie" itemLabel="Nie" />
+	                <f:selectItem itemValue="Nie wiem" itemLabel="Nie wiem" />
+	            </h:selectOneMenu>
+	
+	            <br/>
+	
+	            <h:selectOneMenu id="pytanie8w" value="#{zadanie4.pytanie7}">
+	                Czy jesteś zadowolona z naszych pracowników?
+	                <f:selectItem itemValue="Tak" itemLabel="Tak" />
+	                <f:selectItem itemValue="Raczej tak" itemLabel="Raczej tak" />
+	                <f:selectItem itemValue="Raczej nie" itemLabel="Raczej nie" />
+	                <f:selectItem itemValue="Nie" itemLabel="Nie" />
+	                <f:selectItem itemValue="Nie wiem" itemLabel="Nie wiem" />
+	            </h:selectOneMenu>
+	
+	            <br/>
+	
+	            Wpisz swoje uwagi: <br/>
+	            <h:inputTextarea id="pytanie9w" value="#{zadanie4.pytanie8}" />
+	
+	            <br/><br/>
+	
+			</h:panelGrid>
+			
+			<h:panelGrid rendered="#{zadanie4.sex == 'mezczyzna'}">
+	            <h:selectManyCheckbox id="pytanie5m" value="#{zadanie4.pytanie4}">
+	                Jakiego rodzaju ubrania najchętniej kupujesz?
+	                <f:selectItem itemValue="spodnie" itemLabel="spodnie" />
+	                <f:selectItem itemValue="spodenki" itemLabel="spodenki" />
+	                <f:selectItem itemValue="garnitury" itemLabel="garnitury" />
+	                <f:selectItem itemValue="koszule" itemLabel="koszule" />
+	                <f:selectItem itemValue="krawaty" itemLabel="krawaty" />
+	            </h:selectManyCheckbox>
+	
+	            <h:selectOneMenu id="pytanie6m" value="#{zadanie4.pytanie5}">
+	                Kiedy ostatnio robiłeś u nas zakupy?
+	                <f:selectItem itemValue="Wczoraj" itemLabel="Wczoraj" />
+	                <f:selectItem itemValue="W zeszłym tygodniu" itemLabel="W zeszłym tygodniu" />
+	                <f:selectItem itemValue="W zeszłym miesiącu" itemLabel="W zeszłym miesiącu" />
+	                <f:selectItem itemValue="Kilka miesięcy temu" itemLabel="Kilka miesięcy temu" />
+	                <f:selectItem itemValue="Nie pamiętam" itemLabel="Nie pamiętam" />
+	            </h:selectOneMenu>
+	
+	            <br/>
+	
+	            <h:selectOneMenu id="pytanie7m" value="#{zadanie4.pytanie6}">
+	                Czy jesteś zadowolony z zakupu?
+	                <f:selectItem itemValue="Tak" itemLabel="Tak" />
+	                <f:selectItem itemValue="Raczej tak" itemLabel="Raczej tak" />
+	                <f:selectItem itemValue="Raczej nie" itemLabel="Raczej nie" />
+	                <f:selectItem itemValue="Nie" itemLabel="Nie" />
+	                <f:selectItem itemValue="Nie wiem" itemLabel="Nie wiem" />
+	            </h:selectOneMenu>
+	
+	            <br/>
+	
+	            <h:selectOneMenu id="pytanie8m" value="#{zadanie4.pytanie7}">
+	                Czy jesteś zadowolony z naszych pracowników?
+	                <f:selectItem itemValue="Tak" itemLabel="Tak" />
+	                <f:selectItem itemValue="Raczej tak" itemLabel="Raczej tak" />
+	                <f:selectItem itemValue="Raczej nie" itemLabel="Raczej nie" />
+	                <f:selectItem itemValue="Nie" itemLabel="Nie" />
+	                <f:selectItem itemValue="Nie wiem" itemLabel="Nie wiem" />
+	            </h:selectOneMenu>
+	
+	            <br/>
+	
+	            Wpisz swoje uwagi: <br/>
+	            <h:inputTextarea id="pytanie9m" value="#{zadanie4.pytanie8}" />
+	
+	            <br/><br/>
+
+
+       		</h:panelGrid>
+			
+			
+	    </h:panelGroup>
+	    
+		<h:commandButton value="Submit" action="#{zadanie4.acceptPartOne}"></h:commandButton>
+
+	</h:form>
+</f:view>
+	
+</h:body>
+</html>

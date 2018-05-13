@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SOA_lab5_EgzaminyEar">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="SOA_lab5_EgzaminyEjb.jar" deploy-path="/lib" handle="module:/resource/SOA_lab5_EgzaminyEjb/SOA_lab5_EgzaminyEjb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SOA_lab5_EgzaminyWeb.war" deploy-path="/" handle="module:/resource/SOA_lab5_EgzaminyWeb/SOA_lab5_EgzaminyWeb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

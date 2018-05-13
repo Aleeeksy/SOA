@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<books>
+    <book>
+        <id>0</id>
+        <author>Autor1</author>
+        <title>Tytuł polski</title>
+    </book>
+    <book>
+        <id>1</id>
+        <author>Autor1</author>
+        <title>Tytuł polski</title>
+    </book>
+    <book>
+        <id>2</id>
+        <author>Autor1</author>
+        <title>Tytuł polski</title>
+    </book>
+</books>
